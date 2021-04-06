@@ -14,8 +14,8 @@ export const msalConfig = {
 
     auth: {
         clientId: "",
-        authority: "https://login.microsoftonline.com/common",
-        clientSecret: "Enter_the_Client_Secret_Here"
+        authority: "https://login.microsoftonline.com/",
+        clientSecret: ""
     // },
     // system: {
     //     loggerOptions: {
