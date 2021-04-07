@@ -2,6 +2,8 @@ import axios from "axios";
 
 export async function callApi(endpoint: string, accessToken: string) {
 
+    console.log("microsoft graph endpoint " + endpoint);
+
     const options = {
         headers: {
             Authorization: `Bearer ${accessToken}`

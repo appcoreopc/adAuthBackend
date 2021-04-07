@@ -1,7 +1,7 @@
 import * as yargs from 'yargs';
 import dotenv from "dotenv";
-import { callApi }  from './fetch';
-import { getToken, apiConfig, tokenRequest }  from './auth';
+import { callApi } from './fetch';
+import { getToken, apiConfig, tokenRequest } from './auth';
 
 dotenv.config();
 
@@ -12,15 +12,18 @@ const options = yargs
 
 async function main() {
 
-    console.log(`You have selected: ${options.op}`);
-
     switch (yargs.argv['op']) {
         case 'getUsers':
 
             try {
+                console.log("Getting token:" + tokenRequest);
+                // getting a token for us and we need to login if we haven't done so.
                 const authResponse = await getToken(tokenRequest);
-                const users = await callApi(apiConfig.uri, authResponse!.accessToken);
-                console.log(users);
+                //console.log(authResponse);
+                // initiating a simple call to the microsoft graph with the token obtained above.
+                console.log("calling the graph api. Please read README.md to setup your app permission.")
+                const graphApiCallResponse = await callApi(apiConfig.uri, authResponse!.accessToken);
+                //console.log(graphApiCallResponse);
             } catch (error) {
                 console.log(error);
             }
@@ -31,3 +34,6 @@ async function main() {
             break;
     }
 };
+
+
+main();

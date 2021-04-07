@@ -1,4 +1,4 @@
-import msal from '@azure/msal-node';
+import * as msal from "@azure/msal-node";
 
 /**
  * Configuration object to be passed to MSAL instance on creation. 
@@ -6,26 +6,11 @@ import msal from '@azure/msal-node';
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-node/docs/configuration.md 
  */
 export const msalConfig = {
-	// auth: {
-	// 	clientId: process.env.CLIENT_ID,
-	// 	authority: process.env.AAD_ENDPOINT + process.env.TENANT_ID,
-	// 	clientSecret: process.env.CLIENT_SECRET,
-	// }
-
+	
     auth: {
         clientId: "",
-        authority: "https://login.microsoftonline.com/",
+        authority: "https://login.microsoftonline.com/" + "tenant_id",
         clientSecret: ""
-    // },
-    // system: {
-    //     loggerOptions: {
-    //         loggerCallback(loglevel:LogLevel, message:string, containsPii:boolean) {
-    //             console.log(message);
-    //         },
-    //         piiLoggingEnabled: false,
-    //         logLevel: msal.LogLevel.Verbose,
-    //     }
-    // }
     }
 };
 
@@ -34,12 +19,15 @@ export const msalConfig = {
  * The scope is always in the format '<resource>/.default'. For more, visit: 
  * https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow 
  */
+
+const GRAPH_ENDPOINT = 'https://graph.microsoft.com/';
+
 export const tokenRequest = {
-	scopes: [process.env.GRAPH_ENDPOINT + '.default'],
+	scopes: ['https://graph.microsoft.com/.default'],
 };
 
 export const apiConfig = {
-	uri: process.env.GRAPH_ENDPOINT + 'v1.0/users',
+	uri: GRAPH_ENDPOINT + 'v1.0/users',
 };
 
 /**
