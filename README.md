@@ -1,4 +1,4 @@
-# adAuthScope
+# adAuthBackend
 
 This is a demo for a backend daemon process that has no ui or user intervention. 
 So basicaly everything is happening behind the scene. 
